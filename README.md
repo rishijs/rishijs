@@ -1,2 +1,3 @@
 <img src="/github-metrics.svg" alt="Metrics" width="100%">
-Welcome to my github profile!
+
+Hello, I am passionate about development and game design
