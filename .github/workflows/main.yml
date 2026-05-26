@@ -41,4 +41,4 @@ jobs:
           git config --local user.name "GitHub Action"
           git add github-metrics.svg trophy.svg
           git commit -m "Internal: Update profile metrics and trophy assets [skip ci]" --allow-empty
-          git pu
+          git push
