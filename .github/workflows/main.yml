@@ -27,17 +27,6 @@ jobs:
           template: classic
           base: header, activity, community, repositories, metadata
           
-          # Achievements Configuration
-          plugin_achievements: yes
-          plugin_achievements_display: detailed
-          plugin_achievements_secrets: yes
-          # FIX 1: Overrides the query to block the broken 'projects' sections completely
-          plugin_achievements_only: polyglot, stargazer, explorer, infalliable, packager, commander, hercules, worker
-
-          # Coding Habits Configuration
-          plugin_habits: yes
-          plugin_habits_from: 200
-          plugin_habits_days: 14
-          # FIX 2: Restricts processing strictly to public data to prevent empty/unresolvable author nodes
-          plugin_habits_facts: no
-          config_timezone: America/New_York
+          # Deprecated metrics
+          plugin_achievements: no
+          plugin_habits: no
