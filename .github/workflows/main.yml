@@ -18,7 +18,8 @@ jobs:
 
     steps:
       - name: Generate GitHub Metrics
-        uses: lowlighter/metrics@master
+        # FIX: Switched from lowlighter to a maintained community fork
+        uses: vipzhio/metrics@master
 
         with:
           token: ${{ secrets.METRICS_TOKEN }}
@@ -28,6 +29,12 @@ jobs:
           base: header, activity, community, repositories, metadata
           
           # Achievements Configuration
-          plugin_achievements: no
+          plugin_achievements: yes
+          plugin_achievements_display: detailed
+          plugin_achievements_secrets: yes
+
           # Coding Habits Configuration
-          plugin_habits: no
+          plugin_habits: yes
+          plugin_habits_from: 200
+          plugin_habits_days: 14
+          config_timezone: America/New_York
