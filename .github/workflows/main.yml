@@ -1,7 +1,5 @@
 name: GitHub Metrics
 
-name: GitHub Metrics
-
 permissions:
   contents: write
 
