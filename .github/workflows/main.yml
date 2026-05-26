@@ -1,4 +1,4 @@
-name: GitHub Metrics
+name: GitHub Metrics & Trophies Hybrid
 
 permissions:
   contents: write
@@ -13,20 +13,29 @@ on:
       - master
 
 jobs:
-  github-metrics:
+  generate-assets:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Generate GitHub Metrics
+      - name: Generate Core GitHub Metrics
         uses: lowlighter/metrics@master
-
         with:
           token: ${{ secrets.METRICS_TOKEN }}
           user: rishijs
-
+          filename: github-metrics.svg
           template: classic
           base: header, activity, community, repositories, metadata
-          
-          # Deprecated metrics
-          plugin_achievements: no
-          plugin_habits: no
+
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Fetch Static Trophies
+        run: |
+          curl -s "https://github-profile-trophy-fork-two.vercel.app/?username=rishijs&theme=flat&margin-w=15&margin-h=15" -o trophy.svg
+
+      - name: Commit and Push Assets
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add github-metrics.svg trophy.svg
+          git commit -m "Internal: Update profile metrics and trophy assets [skip ci]" --allow-empty
+          git pu
