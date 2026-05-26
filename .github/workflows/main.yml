@@ -24,6 +24,9 @@ jobs:
           filename: github-metrics.svg
           template: classic
           base: header, activity, community, repositories, metadata
+          
+          plugin_achievements: no
+          plugin_habits: no
 
       - name: Checkout Code
         uses: actions/checkout@v4
