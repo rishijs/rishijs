@@ -31,13 +31,11 @@ jobs:
           plugin_achievements: yes
           plugin_achievements_display: detailed
           plugin_achievements_secrets: yes
-          # FIX: Ignores the deprecated classic projects endpoint causing the crash
           plugin_achievements_ignored: member, maintainer, developer, collaborator
 
           # Coding Habits Configuration
           plugin_habits: yes
           plugin_habits_from: 200
           plugin_habits_days: 14
-          # FIX: Matches the user explicitly to filter commits correctly
           plugin_habits_charts: yes
           config_timezone: America/New_York
