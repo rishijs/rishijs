@@ -35,10 +35,25 @@ jobs:
         run: |
           curl -s "https://github-profile-trophy-fork-two.vercel.app/?username=rishijs&theme=dracula&margin-w=15&margin-h=15&rank=SECRET,SSS,SS,S,A" -o trophy.svg
 
-      - name: Commit and Push Assets
+      - name: Pull latest remote changes
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
+          # Fetch and pull, forcing git to overwrite local workspace changes if any exist
+          git fetch origin main
+          git reset --hard origin/main
+      
+      - name: Remove old trophy and fetch new one
+        run: |
+          # Remove the file explicitly from git tracking and disk
+          git rm -f trophy.svg || rm -f trophy.svg
+          
+          # Download the fresh SVG
+          curl -s "https://github-profile-trophy-fork-two.vercel.app/?username=rishijs&theme=dracula&margin-w=15&margin-h=15&rank=SECRET,SSS,SS,S" -o trophy.svg
+      
+      - name: Commit and Push Changes
+        run: |
           git add trophy.svg
+          # The || true prevents the workflow from failing if your trophies didn't actually change rank/count
           git commit -m "Internal: Update profile metrics and trophy assets [skip ci]" || echo "No changes to commit"
           git push origin main
